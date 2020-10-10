@@ -55,12 +55,14 @@
 <br>
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-        <li class="page-item"><a class="page-link" th:href="@{'/products/?page='+ ${products.previousOrFirstPageable().getPageNumber() + 1}}">Previous</a></li>
+        <li class="page-item" th:classappend="${products.getNumber() + 1 == 1 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{'/products/?page='+ ${products.previousOrFirstPageable().getPageNumber() + 1}}">Previous</a></li>
         <li class="page-item" th:classappend="${products.getNumber() + 1 == i ? 'active' : ''}"
         th:each="i : ${#numbers.sequence(1, products.getTotalPages())}">
             <a class="page-link" th:text="${i}" th:href="@{'/products/?page=' + ${i}}"></a>
         </li>
-        <li class="page-item"><a class="page-link" th:href="@{'/products/?page='+ ${products.nextOrLastPageable().getPageNumber() + 1}}">Next</a></li>
+        <li class="page-item" th:classappend="${products.getNumber() == products.nextOrLastPageable().getPageNumber() ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{'/products/?page='+ ${products.nextOrLastPageable().getPageNumber() + 1}}">Next</a></li>
     </ul>
 </nav>
 <a th:href="@{/}">на Главную страницу</a>

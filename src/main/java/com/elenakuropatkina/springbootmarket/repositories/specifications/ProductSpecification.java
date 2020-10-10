@@ -15,7 +15,7 @@ public final class ProductSpecification {
     }
 
     public static Specification<Product> titleLike(String title) {
-        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), title);
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), "%title%");
     }
 
     public static Specification<Product> idE(Long id) {
