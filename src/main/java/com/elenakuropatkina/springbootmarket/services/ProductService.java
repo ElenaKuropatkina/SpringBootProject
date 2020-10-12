@@ -1,5 +1,6 @@
 package com.elenakuropatkina.springbootmarket.services;
 
+import com.elenakuropatkina.springbootmarket.exeptions.NotFoundProductException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,25 +21,31 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> findAll(Specification<Product> specification) {
-        return productRepository.findAll(specification);
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     public Product findById(Long id) {
-        return productRepository.findOneById(id);
+        return productRepository.findById(id).orElseThrow(() -> new NotFoundProductException("Продукт не найден, id: = " + id));
     }
 
-
-    public Product updateProduct(Product product) {
+    public Product saveOrUpdate(Product product) {
         return productRepository.save(product);
     }
-
 
     public Page<Product> findAll(Specification<Product> spec, Integer page) {
         if (page < 1) {
             page = 1;
         }
         return productRepository.findAll(spec, PageRequest.of(page - 1, 5));
+    }
+
+    public void deleteById(Long id){
+        productRepository.deleteById(id);
+    }
+
+    public boolean existsById(Long id) {
+        return productRepository.existsById(id);
     }
 
 }
