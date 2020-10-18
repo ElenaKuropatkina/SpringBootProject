@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring Boot Market</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<h1>Список пользователей:</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>логин</td>
+        <td>имя</td>
+        <td>фамилия</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="u : ${users.getContent()}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.login}"></td>
+        <td th:text="${u.first_name}"></td>
+        <td th:text="${u.last_name}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a th:href="@{/}">на Главную страницу</a>
+</body>
+</html>
