@@ -9,6 +9,21 @@ public class MainController {
     public String showHomePage() {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login_form";
+    }
+
+    @GetMapping("/products/forCustomers")
+    public String productForUser() {
+        return "products_for_customers";
+    }
+
+    @GetMapping("/users")
+    public String userList() {
+        return "users";
+    }
 }
 
 

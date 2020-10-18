@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div>
+    <form th:action="@{/authenticate}" method="POST">
+        <div th:if="${param.error} != null">
+            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                Invalid login and password
+            </div>
+        </div>
+        <input type="text" name="username" placeholder="Адрес электронной почты">
+        <input type="password" name="password" placeholder="Пароль">
+        <button type="submit" class="btn btn-success">Авторизоваться</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -46,7 +46,7 @@ public class ProductController {
     @PostMapping("/edit")
     public String updateProduct(@ModelAttribute Product productModify) {
         productService.saveOrUpdate(productModify);
-        return "redirect:/products/";
+        return "redirect:/products";
     }
 
     @GetMapping("/add")
@@ -57,6 +57,6 @@ public class ProductController {
     @PostMapping("/add")
     public String saveNewProduct(@ModelAttribute Product product) {
         productService.saveOrUpdate(product);
-        return "redirect:/products/";
+        return "redirect:/products";
     }
 }
